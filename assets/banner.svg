@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1470 385" width="1470" height="385" role="img" aria-label="Stellar Payment Gateway banner">
+  <defs>
+    <linearGradient id="banner-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1f52"/>
+      <stop offset="50%" stop-color="#081f5c"/>
+      <stop offset="100%" stop-color="#050f33"/>
+    </linearGradient>
+    <linearGradient id="banner-star" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#68f9f2"/>
+      <stop offset="100%" stop-color="#39bfb7"/>
+    </linearGradient>
+    <radialGradient id="banner-glow" cx="0.18" cy="0.4" r="0.55">
+      <stop offset="0%" stop-color="#7096d1" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#7096d1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1470" height="385" fill="url(#banner-bg)"/>
+  <rect width="1470" height="385" fill="url(#banner-glow)"/>
+
+  <!-- subtle grid lines -->
+  <g stroke="#7096d1" stroke-opacity="0.08" stroke-width="1">
+    <line x1="0" y1="96" x2="1470" y2="96"/>
+    <line x1="0" y1="192" x2="1470" y2="192"/>
+    <line x1="0" y1="288" x2="1470" y2="288"/>
+    <line x1="245" y1="0" x2="245" y2="385"/>
+    <line x1="490" y1="0" x2="490" y2="385"/>
+    <line x1="735" y1="0" x2="735" y2="385"/>
+    <line x1="980" y1="0" x2="980" y2="385"/>
+    <line x1="1225" y1="0" x2="1225" y2="385"/>
+  </g>
+
+  <!-- Logo badge -->
+  <g transform="translate(70 72)">
+    <rect width="240" height="240" rx="56" fill="url(#banner-star)" opacity="0.12"/>
+    <rect x="10" y="10" width="220" height="220" rx="52" fill="#0a2568" stroke="#334eac" stroke-width="3"/>
+    <g transform="translate(120 112) rotate(45)">
+      <rect x="-15" y="-62" width="30" height="124" rx="15" fill="url(#banner-star)"/>
+      <rect x="-62" y="-15" width="124" height="30" rx="15" fill="#68f9f2"/>
+    </g>
+    <circle cx="120" cy="112" r="9" fill="#081f5c" opacity="0.92"/>
+    <g stroke="#7096d1" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M120 150 L120 182"/>
+      <path d="M107 170 L120 183 L133 170"/>
+    </g>
+    <circle cx="120" cy="142" r="5.4" fill="#bad6eb"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="350" y="180" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="800" letter-spacing="1" fill="#ffffff">STELLAR PAYMENT</text>
+  <text x="350" y="252" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="800" letter-spacing="1" fill="#68f9f2">GATEWAY</text>
+
+  <!-- Tagline -->
+  <text x="352" y="300" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="0.5" fill="#bad6eb">Payments, lending, and real-world assets on Stellar &amp; EVM</text>
+
+  <!-- Right accents -->
+  <g transform="translate(1180 96)" stroke="#39bfb7" stroke-opacity="0.5" stroke-width="3" fill="none">
+    <path d="M0 80 L120 40"/>
+    <path d="M60 140 L180 100"/>
+    <path d="M120 200 L240 160"/>
+    <circle cx="120" cy="40" r="6" fill="#39bfb7" stroke="none"/>
+    <circle cx="180" cy="100" r="6" fill="#39bfb7" stroke="none"/>
+    <circle cx="240" cy="160" r="6" fill="#39bfb7" stroke="none"/>
+  </g>
+</svg>
