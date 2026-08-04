@@ -210,8 +210,9 @@ export const getPool = async (request: GetPoolRequest): Promise<PoolInfo[]> => {
   try {
     const pools = await makeAPIRequest<PoolInfo[]>(endpoint, { method: "GET" });
 
-    if (process.env.NODE_ENV === "development" && clientEnv.verboseLogging) {
-      console.log("💧 Pool information received:", pools);
+    if (clientEnv.verboseLogging) {
+      // eslint-disable-next-line no-console -- gated behind verboseLogging flag
+      console.log("[soroswap] Pool information received:", pools);
     }
 
     return pools;

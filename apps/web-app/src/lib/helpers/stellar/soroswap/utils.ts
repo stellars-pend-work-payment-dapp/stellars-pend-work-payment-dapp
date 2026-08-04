@@ -1,16 +1,13 @@
 import { SoroswapSDK, SupportedNetworks } from "@soroswap/sdk";
 import type { Token } from "../../../types/soroswapTypes";
 import { getCurrentNetwork, getAvailableTokens, getTokens } from "./tokens";
-import { clientEnv } from "@/lib/env.client";
 
 const SOROSWAP_API_URL = "https://api.soroswap.finance";
+/** Internal Next.js proxy route — keeps the server-side API key off the client. */
+const SOROSWAP_PROXY_URL = "/api/soroswap-proxy";
 const DEFAULT_TIMEOUT = 50000;
 
 export const getApiKey = (): string | null => {
-  const envKeyStr = clientEnv.soroswapApiKey;
-  if (envKeyStr && envKeyStr.trim() !== "") {
-    return envKeyStr.trim();
-  }
   if (typeof window === "undefined") return null;
   const localKey = localStorage.getItem("soroswap_api_key");
   if (localKey && localKey.trim() !== "") {
@@ -55,15 +52,14 @@ export const getSoroswapSDK = (): SoroswapSDK => {
 
   const apiKey = getApiKey();
 
-  if (!apiKey) {
-    throw new Error(
-      "Soroswap API key is not configured. Please add your API key in the settings or via environment variable PUBLIC_SOROSWAP_API_KEY (or VITE_SOROSWAP_API_KEY). Get your key at https://api.soroswap.finance/login"
-    );
-  }
+  // When the user has their own key in localStorage, hit the SoroSwap API
+  // directly. Otherwise route through the server-side proxy so the
+  // organisation's shared key stays off the client bundle.
+  const useProxy = !apiKey;
 
   sdkInstance = new SoroswapSDK({
-    apiKey,
-    baseUrl: SOROSWAP_API_URL,
+    apiKey: apiKey ?? "proxy-dummy-key",
+    baseUrl: useProxy ? SOROSWAP_PROXY_URL : SOROSWAP_API_URL,
     defaultNetwork: currentNetwork,
     timeout: DEFAULT_TIMEOUT,
   });
@@ -79,10 +75,27 @@ export const makeAPIRequest = async <T>(
 ): Promise<T> => {
   const apiKey = getApiKey();
 
+  // When the user has their own key, hit SoroSwap directly.
+  // Otherwise route through the server-side proxy.
   if (!apiKey) {
-    throw new Error(
-      "Soroswap API key is not configured. Please add your API key in the settings or via environment variable PUBLIC_SOROSWAP_API_KEY (or VITE_SOROSWAP_API_KEY). Get your key at https://api.soroswap.finance/login"
-    );
+    const proxyRes = await fetch(SOROSWAP_PROXY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        path: endpoint,
+        method: options.method ?? "GET",
+        body: options.body ? JSON.parse(options.body as string) : undefined,
+      }),
+    });
+
+    if (!proxyRes.ok) {
+      const errorData = await proxyRes.json().catch(() => ({}));
+      throw new Error(
+        `API request failed: ${proxyRes.status}. ${JSON.stringify(errorData)}`
+      );
+    }
+
+    return (await proxyRes.json()) as T;
   }
 
   const url = `${SOROSWAP_API_URL}${endpoint}`;

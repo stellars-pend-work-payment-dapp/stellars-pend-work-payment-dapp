@@ -30,6 +30,9 @@ const serverSchema = z.object({
   FAUCET_SECRET_KEY: z.string().optional(),
   FAUCET_CONTRACT_ID: z.string().optional(),
 
+  // SoroSwap API key (server-only — proxied to avoid client exposure)
+  SOROSWAP_API_KEY: z.string().optional(),
+
   // Etherfuse anchor
   ETHERFUSE_API_KEY: z.string().optional(),
   ETHERFUSE_BASE_URL: z.string().url().optional(),
@@ -44,6 +47,7 @@ const parsed = serverSchema.safeParse({
   VAULT_MANAGER_SECRET_KEY: process.env.VAULT_MANAGER_SECRET_KEY,
   FAUCET_SECRET_KEY: process.env.FAUCET_SECRET_KEY,
   FAUCET_CONTRACT_ID: process.env.FAUCET_CONTRACT_ID,
+  SOROSWAP_API_KEY: process.env.SOROSWAP_API_KEY,
   ETHERFUSE_API_KEY: process.env.ETHERFUSE_API_KEY,
   ETHERFUSE_BASE_URL: process.env.ETHERFUSE_BASE_URL,
   ALFREDPAY_API_KEY: process.env.ALFREDPAY_API_KEY,
