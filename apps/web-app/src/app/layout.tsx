@@ -11,6 +11,23 @@ export const metadata: Metadata = {
     initialScale: 1,
     viewportFit: "cover",
   },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/stellar-payment-gateway.svg",
+  },
+  openGraph: {
+    title: "Stellar Payment Gateway",
+    description: "All-in-one platform for RWAs on Stellar",
+    siteName: "Stellar Payment Gateway",
+    images: ["/stellar-payment-gateway.png"],
+  },
+  twitter: {
+    card: "summary",
+    title: "Stellar Payment Gateway",
+    description: "All-in-one platform for RWAs on Stellar",
+    images: ["/stellar-payment-gateway.png"],
+  },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({

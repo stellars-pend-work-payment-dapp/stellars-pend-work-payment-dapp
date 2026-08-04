@@ -1,0 +1,27 @@
+{
+  "name": "Stellar Payment Gateway",
+  "short_name": "SPG",
+  "description": "All-in-one platform for RWAs on Stellar",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#229EDF",
+  "icons": [
+    {
+      "src": "/stellar-payment-gateway.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/stellar-payment-gateway.png",
+      "sizes": "100x100",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
