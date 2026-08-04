@@ -5,7 +5,6 @@ import { PRESET_RULES } from "@/features/automation/const/automation";
 
 // In-memory store for demo; swap for a real DB in production
 declare global {
-  // eslint-disable-next-line no-var
   var __automationStrategies: Map<string, Strategy> | undefined;
 }
 globalThis.__automationStrategies ??= new Map<string, Strategy>();

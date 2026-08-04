@@ -6,7 +6,6 @@ import {
   BASE_FEE,
   Operation,
   Address,
-  nativeToScVal,
   xdr,
 } from "@stellar/stellar-sdk";
 import { Client as DefindexVaultClient } from "@spg/defindex-vault";

@@ -3,7 +3,6 @@ import type { RebalancePlan } from "@/features/automation/types/automation";
 
 // In-memory plan store for demo
 declare global {
-  // eslint-disable-next-line no-var
   var __automationPlans: Map<string, RebalancePlan> | undefined;
 }
 globalThis.__automationPlans ??= new Map<string, RebalancePlan>();

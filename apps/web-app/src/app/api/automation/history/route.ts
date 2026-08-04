@@ -3,7 +3,6 @@ import type { ActionLogEntry } from "@/features/automation/types/automation";
 
 // In-memory log for demo; swap for a database in production
 declare global {
-  // eslint-disable-next-line no-var
   var __automationHistory: ActionLogEntry[] | undefined;
 }
 globalThis.__automationHistory ??= [];

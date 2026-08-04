@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 import type { Strategy } from "@/features/automation/types/automation";
 
 declare global {
-  // eslint-disable-next-line no-var
   var __automationStrategies: Map<string, Strategy> | undefined;
 }
 globalThis.__automationStrategies ??= new Map<string, Strategy>();
