@@ -40,10 +40,14 @@ export function MobileHeader() {
     });
   }, [activeAddress]);
 
+  // See Sidebar: exact-match for the job routes so `/jobs/new` does not also
+  // light up "Jobs"; prefix-match elsewhere so nested routes keep the parent.
+  const EXACT_MATCH = ["/dashboard", "/jobs", "/jobs/new"];
+
   const isActive = (href: string) =>
-    href === "/dashboard"
-      ? pathname === "/dashboard"
-      : pathname === href || pathname?.startsWith(`${href}/`);
+    EXACT_MATCH.includes(href)
+      ? pathname === href
+      : pathname === href || Boolean(pathname?.startsWith(`${href}/`));
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {

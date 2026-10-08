@@ -12,9 +12,30 @@ import {
   Zap,
   Bell,
   Workflow,
+  Briefcase,
+  PlusSquare,
 } from "lucide-react";
 
+/**
+ * The product surface: the Stellar work-payment escrow.
+ *
+ * Everything a user needs is reachable from here.
+ */
 export const NAV_ITEMS = [
+  { label: "Jobs", href: "/jobs", icon: Briefcase },
+  { label: "Create job", href: "/jobs/new", icon: PlusSquare },
+  { label: "Activity", href: "/activity", icon: Bell },
+  { label: "Settings", href: "/settings", icon: Settings },
+] as const;
+
+/**
+ * Modules inherited from the repository's previous life as a DeFi/RWA dashboards
+ * app. They are **not** part of the work-escrow product and are not covered by
+ * its documentation, tests or deployment record. They are kept reachable so the
+ * existing code keeps working, but they are grouped under a clearly labelled
+ * "Legacy experiments" heading so they cannot be mistaken for product features.
+ */
+export const LEGACY_NAV_ITEMS = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Discover", href: "/discover", icon: BarChart2 },
   { label: "Pools", href: "/pools", icon: Landmark },
@@ -25,9 +46,7 @@ export const NAV_ITEMS = [
   { label: "Strategies", href: "/strategies", icon: Workflow },
   { label: "Analytics", href: "/analytics", icon: PieChart },
   { label: "Automation", href: "/automation", icon: Zap },
-  { label: "Activity", href: "/activity", icon: Bell },
   { label: "Ramps", href: "/ramps", icon: Banknote },
-  { label: "Settings", href: "/settings", icon: Settings },
   { label: "Admin", href: "/dashboard/admin", icon: Shield, adminOnly: true },
 ] as const;
 

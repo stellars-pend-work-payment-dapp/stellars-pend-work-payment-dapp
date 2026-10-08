@@ -33,6 +33,12 @@ const clientSchema = z.object({
   NEXT_PUBLIC_STELLAR_HORIZON_URL: z.string().url(),
 
   // --- Optional public config ---
+  /**
+   * Deployed `work-escrow` contract id. Falls back to the id baked into the
+   * generated `@spg/escrow` bindings, so a fresh deployment can be pointed at
+   * without regenerating the client.
+   */
+  NEXT_PUBLIC_ESCROW_CONTRACT_ID: z.string().optional(),
   NEXT_PUBLIC_LENDING_ADMIN_ADDRESS: z.string().optional(),
   NEXT_PUBLIC_FAUCET_CONTRACT_ID: z.string().optional(),
   NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID: z.string().optional(),
@@ -49,6 +55,7 @@ const rawClientEnv = {
     process.env.NEXT_PUBLIC_STELLAR_NETWORK_PASSPHRASE,
   NEXT_PUBLIC_STELLAR_RPC_URL: process.env.NEXT_PUBLIC_STELLAR_RPC_URL,
   NEXT_PUBLIC_STELLAR_HORIZON_URL: process.env.NEXT_PUBLIC_STELLAR_HORIZON_URL,
+  NEXT_PUBLIC_ESCROW_CONTRACT_ID: process.env.NEXT_PUBLIC_ESCROW_CONTRACT_ID,
   NEXT_PUBLIC_LENDING_ADMIN_ADDRESS:
     process.env.NEXT_PUBLIC_LENDING_ADMIN_ADDRESS,
   NEXT_PUBLIC_FAUCET_CONTRACT_ID: process.env.NEXT_PUBLIC_FAUCET_CONTRACT_ID,
@@ -83,6 +90,7 @@ export const clientEnv = {
   networkPassphrase: parsedEnv.NEXT_PUBLIC_STELLAR_NETWORK_PASSPHRASE,
   rpcUrl: parsedEnv.NEXT_PUBLIC_STELLAR_RPC_URL,
   horizonUrl: parsedEnv.NEXT_PUBLIC_STELLAR_HORIZON_URL,
+  escrowContractId: parsedEnv.NEXT_PUBLIC_ESCROW_CONTRACT_ID ?? "",
   lendingAdminAddress: parsedEnv.NEXT_PUBLIC_LENDING_ADMIN_ADDRESS ?? "",
   faucetContractId: parsedEnv.NEXT_PUBLIC_FAUCET_CONTRACT_ID ?? "",
   walletConnectProjectId: parsedEnv.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID ?? "",
